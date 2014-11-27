@@ -65,6 +65,8 @@
 
 .cem-shell-list-menu, .cem-shell-list-note {
   width   : 100%;
+  font-size: 18px;
+  height:	22px;
   padding : 0.1em 0.5em;
 }
 
