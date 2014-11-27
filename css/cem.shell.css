@@ -1,0 +1,96 @@
+/*
+ * cem.shell.css
+ * Shell styles
+*/
+
+.cem-shell-head, .cem-shell-head-logo, .cem-shell-head-acct,
+.cem-shell-head-search, .cem-shell-main, .cem-shell-main-nav,
+.cem-shell-main-content, .cem-shell-foot,
+.cem-shell-modal {
+  position : absolute;
+}
+.cem-shell-head {
+  top    : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.cem-shell-head-logo {
+  top    : 4px;
+  left   : 8px;
+  height : 32px;
+  width  : 164px;
+}
+  .cem-shell-head-logo h1 {
+    font   : 800 22px/22px Arial, Helvetica, sans-serif;
+    margin : 0;
+  }
+  .cem-shell-head-logo p {
+    font   : 800 10px/10px Arial, Helvetica, sans-serif;
+    margin : 0;
+  }
+
+.cem-shell-head-acct {
+  top           : 4px;
+  right         : 0;
+  width         : 210px;
+  height        : 32px;
+  line-height   : 32px;
+  background    : #888;
+  color         : #fff;
+  text-align    : center;
+  cursor        : pointer;
+  overflow      : hidden;
+  text-overflow : ellipsis;
+}
+.cem-shell-main {
+  top    : 40px;
+  left   : 0;
+  bottom : 40px;
+  right  : 0;
+}
+.cem-shell-main-content,
+.cem-shell-main-nav {
+  top    : 0;
+  bottom : 0;
+}
+.cem-shell-main-nav {
+  width      : 400px;
+  background : #eee;
+  z-index    : 1;
+}
+  .cem-x-closed .cem-shell-main-nav {
+    width  : 0;
+  }
+
+.cem-shell-list-menu, .cem-shell-list-note {
+  width   : 100%;
+  padding : 0.1em 0.5em;
+}
+
+.cem-shell-main-content {
+  left  : 400px;
+  right : 0;
+  background : #ddd;
+}
+  .cem-x-closed .cem-shell-main-content {
+    left : 0;
+  }
+.cem-shell-foot {
+  bottom : 0;
+  left   : 0;
+  right  : 0;
+  height : 40px;
+}
+.cem-shell-modal {
+  margin-top    : -200px;
+  margin-left   : -200px;
+  top           : 50%;
+  left          : 50%;
+  width         : 400px;
+  height        : 400px;
+  background    : #fff;
+  border-radius : 3px;
+  z-index       : 2;
+  display       : none;
+}
