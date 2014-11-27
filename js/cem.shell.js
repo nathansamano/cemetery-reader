@@ -28,7 +28,10 @@ cem.shell = (function () {
           +  'Cemetery Data</div>'
           + '<div class="cem-shell-list-menu"'
           +  ' data-id="geolocation">'
-          +  'Geolocation information</div></div>'
+          +  'Geolocation information</div>'
+         + '<div class="cem-shell-list-menu"'
+          +  ' data-id="clear">'
+          +  'Clear Area</div></div>'
           + '<div class="cem-shell-main-content">'
 	  + '</div>'
         + '</div>'
@@ -108,6 +111,8 @@ cem.shell = (function () {
 	  break;
 	case 'geolocation':
 	  jqueryMap.$main.appen(geo_form());
+	  break;
+	case 'clear':
 	  break;
 	}
     return false;
