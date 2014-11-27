@@ -1,47 +1,46 @@
 <html>
 <head>
-        <!-- jQuery -->
-        <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
 
+  <!-- Our stylesheets -->
+  <link rel="stylesheet" href="css/cem.css"       type="text/css"/>
+  <link rel="stylesheet" href="css/cem.shell.css" type="text/css"/>
+
+  <!-- hold one
+  <link rel="stylesheet" href="css/cem.input.css"  type="text/css"/>
+  -->
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="//code.jquery.com/jquery-latest.min.js"></script>
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/cupertino/jquery-ui.css">
+
+  <!-- jQueryUI -->
   <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
   <link rel="stylesheet" href="css/style.css">
 
-        <!-- Handlebars -->
-        <script type="text/javascript" src="lib/handlebars/handlebars.js"></script>
+  <!-- Handlebars -->
+  <script type="text/javascript" src="lib/handlebars/handlebars.js"></script>
 
-    <script type="text/javascript" src="lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js"></script>
-    <link type="text/css" href="lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css" rel="stylesheet"/>
+  <!-- jQueryUI Timepicker -->
+  <script type="text/javascript" src="lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.js"></script>
+  <link type="text/css" href="lib/jqueryui-timepicker-addon/dist/jquery-ui-timepicker-addon.min.css" rel="stylesheet"/>
 
-	<!-- Alpaca -->
-        <script type="text/javascript" src="//code.cloudcms.com/alpaca/1.5.0/bootstrap/alpaca.min.js"></script>
-        <link type="text/css" href="//code.cloudcms.com/alpaca/1.5.0/bootstrap/alpaca.min.css" rel="stylesheet"/>
+  <!-- Alpaca -->
+  <script type="text/javascript" src="//code.cloudcms.com/alpaca/1.5.0/bootstrap/alpaca.min.js"></script>
+  <link type="text/css" href="//code.cloudcms.com/alpaca/1.5.0/bootstrap/alpaca.min.css" rel="stylesheet"/>
 
-<script language="javascript">
-function post_cem() {
-	$('#links').hide();
-	cem_form();
-	}
+  <!-- Our Javascript -->
+  <script src='js/cem.js'></script>
+  <script src='js/cem.shell.js'></script>
+  <script src='js/cemetery.js'></script>
+  <script src='js/geolocation.js'></script>
 
-function post_geo() {
-	$('#links').hide();
-	geo_form();
-	}
+<!-- Let's get started -->
+<script>
+    $(function () { cem.initModule( $('#cem') ); });
 </script>
 
 </head>
 <body>
-<h2>Prototype Project Input Form</h2>
-<div>
-<div id="form">
-</div>
-<script src='js/cemetery.js'></script>
-<script src='js/geolocation.js'></script>
-<div id="links">
-<a href="javascript:post_cem()">Post cemetery form</a>
-<p>
-<a href="javascript:post_geo()">Post geolocation form</a>
-</div>
-</div>
+<div id="cem"></div>
 </body>
 </html>
