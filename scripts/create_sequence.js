@@ -1,3 +1,4 @@
+// Create (or recreate) ID counters for our various entities
 db.counters.insert(
    {
       _id: "cemetery",
