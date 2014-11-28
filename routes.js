@@ -32,7 +32,8 @@ var
 // This probably doesn't belong here, but for now . . . 
 var booleans = { "cemetery": { "hasReading": false, "hasRegistry": false, "isActive": false },  "geolocation": { "isBox": false } },
 key_name, 
-check_map;
+check_map,
+id;
 
 configRoutes = function ( app, server ) {
   app.all( '/:obj_type/*?', function ( request, response, next ) {
@@ -41,7 +42,31 @@ configRoutes = function ( app, server ) {
   });
 
   app.post( '/:obj_type/create', function ( request, response ) {
+    // Do you smell a kludge here?
+    // Get next ID for appropriate collection
+    var dbName = request.params.obj_type;
     dbHandle.collection(
+        'counters',
+        function ( outer_error, collection ) {
+        var
+          sort_order = [],
+          options_map = {
+            'new' : true, safe: true, fsync: true
+          };
+        collection.findAndModify(
+            { _id: dbName },
+            [[ '_id',1]],
+            { $inc: { seq: 1 } },
+            {new: true, fsync: true},
+        function(err, doc){
+          console.log('Retval #1: ' + doc.seq);
+	  id = doc.seq;
+          }
+          ); // findAndModify
+        } // outer function
+    ); // collection operation
+    // Now make this one wait. . . dammit 
+    setTimeout(function() {dbHandle.collection(
       request.params.obj_type,
       function ( outer_error, collection ) {
         var
@@ -51,6 +76,7 @@ configRoutes = function ( app, server ) {
 	  // Is there a better way of doing this??  Tell me please!!
 	  console.log(request.params.obj_type);
 	  var inputMap = JSON.parse(obj_map.json);
+	  console.log('Input map: ' + inputMap);
 	  check_map = booleans[request.params.obj_type];
 	  for ( key_name in check_map ) {
 		if ( !(inputMap.hasOwnProperty( key_name )) ) {
@@ -59,6 +85,10 @@ configRoutes = function ( app, server ) {
 	  	};
 	  // Flush contents of check_map for next run
 	  for (var member in check_map) delete check_map[member];
+	  // Add call to set primary key (depending on object type)
+          console.log('Going to use: ' + id);
+	  // You can only do this once
+	  inputMap['_id'] = id;
 	  console.log(inputMap);
           collection.insert(
             inputMap,
@@ -71,6 +101,7 @@ configRoutes = function ( app, server ) {
           ); // end insert
         } // end outer func
     ); // end handler
+   },100);
   });
 
   app.post( '/:obj_type/update/:id', function ( request, response ) {
