@@ -42,6 +42,7 @@ configRoutes = function ( app, server ) {
   });
 
   app.post( '/:obj_type/create', function ( request, response ) {
+
     // Do you smell a kludge here?
     // Get next ID for appropriate collection
     var dbName = request.params.obj_type;
@@ -65,13 +66,16 @@ configRoutes = function ( app, server ) {
           ); // findAndModify
         } // outer function
     ); // collection operation
-    // Now make this one wait. . . dammit 
+
+    // Now make the create operation wait . . . dammit 
+    // Timeout seems needed by wait for sequence fetch
     setTimeout(function() {dbHandle.collection(
       request.params.obj_type,
       function ( outer_error, collection ) {
         var
           options_map = { safe: true },
           obj_map     = request.body;
+
 	  // Insert false values for unsent booleans
 	  // Is there a better way of doing this??  Tell me please!!
 	  console.log(request.params.obj_type);
@@ -85,11 +89,12 @@ configRoutes = function ( app, server ) {
 	  	};
 	  // Flush contents of check_map for next run
 	  for (var member in check_map) delete check_map[member];
-	  // Add call to set primary key (depending on object type)
-          console.log('Going to use: ' + id);
-	  // You can only do this once
+
+	  // Set primary key (depending on object type)
 	  inputMap['_id'] = id;
 	  console.log(inputMap);
+
+	  // Write full record to database, including generated key
           collection.insert(
             inputMap,
             options_map,
