@@ -110,7 +110,7 @@ cem.shell = (function () {
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geolocation':
-	  jqueryMap.$main.appen(geo_form());
+	  jqueryMap.$main.append(geo_form());
 	  break;
 	case 'clear':
 	  break;
