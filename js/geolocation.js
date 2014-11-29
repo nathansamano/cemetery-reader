@@ -38,11 +38,18 @@ $('.cem-shell-main-content').alpaca({
                "submit": {
                   "click":function(e){
                     var formData = this.getValue();
+		    // Convert data to suit GeoJSON format
+		    var coordinates = [];
+		    coordinates.push(formData['long']);
+		    coordinates.push(formData['lat']);
+		    // This is MongoDB's indexable GeoJSON object structure
+		    // Note we're now ignoring bounding box stuff. . . 
+		    var modData = { loc: { type: 'Point', 'coordinates': coordinates }};
                     // Send the data to the server via HTML POST
                     $.ajax({
                       type: "POST",
                       url: "geolocation/create",
-                      data: {json:JSON.stringify(formData)},
+                      data: {json:JSON.stringify(modData)},
                       // Render response from server in alert box
                       success: function(data, msg, xhr) {
                         alert(JSON.stringify(data));
