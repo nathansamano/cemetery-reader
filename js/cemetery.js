@@ -102,9 +102,10 @@ $('.cem-shell-main-content').alpaca({
                       // Render response from server in alert box
                       success: function(data, msg, xhr) {
                         alert(JSON.stringify(data));
-                        } // success
+                      } // success
                      }); // ajax
-		   // this.clear(true);
+		   // You would think this would be documented . . . 
+		   // this.reset();
                    } // click
                  }, // submit
                 "reset": {}
@@ -159,6 +160,7 @@ $('.cem-shell-main-content').alpaca({
             },
             "establishedDate": {
                 "type": "date",
+		"dateFormat": "MM/DD/YYYY",
                 "label": "Date Established",
                 "focus": false,
                 "validate": true,
@@ -166,11 +168,12 @@ $('.cem-shell-main-content').alpaca({
                 "showMessages": true,
                 "size": 40,
                 "picker": {
-		    "yearRange": "1860:1959",
-		    "changeMonth": true,
-		    "changeYear": true,
-		    "pickTime": false
-                }
+		    "minDate": '01/01/1850',
+		    "pickTime": false,
+		    "icons": {
+			"date": 'glyphicon glyphicon-calendar'
+               		 }
+		}	
            },
             "hasRegistry": {
                 "type": "checkbox",
