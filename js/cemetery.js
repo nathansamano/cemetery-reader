@@ -101,7 +101,7 @@ $('.cem-shell-main-content').alpaca({
                       data: {json:JSON.stringify(formData)},
                       // Render response from server in alert box
                       success: function(data, msg, xhr) {
-                        alert(msg);
+                        alert(JSON.stringify(data));
                         } // success
                      }); // ajax
 		   // this.clear(true);
