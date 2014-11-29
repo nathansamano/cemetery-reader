@@ -40,8 +40,8 @@ $('.cem-shell-main-content').alpaca({
                     var formData = this.getValue();
 		    // Convert data to suit GeoJSON format
 		    var coordinates = [];
-		    coordinates.push(formData['long']);
-		    coordinates.push(formData['lat']);
+		    coordinates.push(parseFloat(formData['long']));
+		    coordinates.push(parseFloat(formData['lat']));
 		    // This is MongoDB's indexable GeoJSON object structure
 		    // Note we're now ignoring bounding box stuff. . . 
 		    var modData = { loc: { type: 'Point', 'coordinates': coordinates }};
