@@ -7,7 +7,7 @@ settings = {
           showPhotoCaption: true,
           showPhotoFilename: true,
           thumbSize: 1024,
-	  photoSize: 1600
+          photoSize: 1600
           };
 $(".cem-shell-main-content").pwi(settings);
 };
