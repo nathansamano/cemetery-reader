@@ -219,7 +219,7 @@ $('.cem-shell-main-content').alpaca({
     "view": {
         "parent": "bootstrap-edit",
         "layout": {
-            "template": './layouts-example1-template.html',
+            "template": '/lib/layouts-example1-template.html',
             "bindings": {
                 "cemeteryName": "#left",
 		"ownerType": "#left",
