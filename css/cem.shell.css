@@ -74,6 +74,7 @@
   left  : 400px;
   right : 0;
   background : #ddd;
+  overflow-y:auto;
 }
   .cem-x-closed .cem-shell-main-content {
     left : 0;
