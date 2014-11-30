@@ -29,7 +29,10 @@ cem.shell = (function () {
           + '<div class="cem-shell-list-menu"'
           +  ' data-id="geolocation">'
           +  'Geolocation information</div>'
-         + '<div class="cem-shell-list-menu"'
+	  +  '<div class="cem-shell-list-menu"'
+	  +  ' data-id="pwi">'
+	  +  ' PWI Plugin</div>'
+          + '<div class="cem-shell-list-menu"'
           +  ' data-id="clear">'
           +  'Clear Area</div></div>'
           + '<div class="cem-shell-main-content">'
@@ -111,6 +114,9 @@ cem.shell = (function () {
 	  break;
 	case 'geolocation':
 	  jqueryMap.$main.append(geo_form());
+	  break;
+	case 'pwi':
+	  jqueryMap.$main.append(pwi_form());
 	  break;
 	case 'clear':
 	  break;
