@@ -66,6 +66,7 @@ $('.cem-shell-main-content').alpaca({
             "lat": {
                 "type": "text",
                 "label": "Enter latitude",
+		"helper": "(Negative = South)",
                 "validate": true,
                 "disabled": false,
                 "showMessages": true,
@@ -74,6 +75,7 @@ $('.cem-shell-main-content').alpaca({
             "long": {
                 "type": "text",
                 "label": "Enter Longitude",
+		"helper": "(Negative = West)",
                 "validate": true,
                 "disabled": false,
                 "showMessages": true,
