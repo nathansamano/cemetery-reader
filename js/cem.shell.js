@@ -66,6 +66,7 @@ cem.shell = (function () {
   setJqueryMap = function () {
     var $container = stateMap.$container;
 
+    // I added several valures here for divs I need to manipulate
     jqueryMap = {
       $container : $container,
       $acct      : $container.find('.cem-shell-head-acct'),
