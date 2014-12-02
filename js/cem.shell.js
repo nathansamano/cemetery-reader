@@ -75,7 +75,8 @@ cem.shell = (function () {
       $acct      : $container.find('.cem-shell-head-acct'),
       $nav       : $container.find('.cem-shell-main-nav'),
       $main	 : $container.find('.cem-shell-main-content'),
-      $menu	 : $container.find('.cem-shell-list-menu')
+      $menu	 : $container.find('.cem-shell-list-menu'),
+      $footer 	 : $container.find('.cem-shell-foot')
     };
   };
   // End DOM method /setJqueryMap/
@@ -126,7 +127,9 @@ cem.shell = (function () {
 	  jqueryMap.$main.append(pwi_form());
 	  break;
 	case 'pwi-get':
-	  console.log(JSON.stringify(pwi.returnDataMap));
+	  jqueryMap.$footer.empty();
+	  jqueryMap.$footer.append('<h3>' + JSON.stringify(pwi.returnDataMap) + '</h3>');
+	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
 	  jqueryMap.$main.empty();
