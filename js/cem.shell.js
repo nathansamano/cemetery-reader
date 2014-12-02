@@ -32,6 +32,9 @@ cem.shell = (function () {
 	  +  '<div class="cem-shell-list-menu"'
 	  +  ' data-id="pwi">'
 	  +  ' PWI Plugin</div>'
+	  +  '<div class="cem-shell-list-menu"'
+	  +  ' data-id="pwi-get">'
+	  +  'Show PWI Data</div>'
           + '<div class="cem-shell-list-menu"'
           +  ' data-id="clear">'
           +  'Clear Area</div></div>'
@@ -107,19 +110,26 @@ cem.shell = (function () {
   onTapList = function ( event ) {
     // Testing to see if we can pass menu item via handler
     var menu_item  = $(this).data("id"), form;
-    console.log('Tapped on' + menu_item);
-    jqueryMap.$main.empty();
+    console.log('Tapped on ' + menu_item);
+    //jqueryMap.$main.empty();
     switch(menu_item) {
 	case 'cemetery':
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geolocation':
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(geo_form());
 	  break;
 	case 'pwi':
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(pwi_form());
 	  break;
+	case 'pwi-get':
+	  console.log(JSON.stringify(pwi.returnDataMap));
+	  break;
 	case 'clear':
+	  jqueryMap.$main.empty();
 	  break;
 	}
     return false;
