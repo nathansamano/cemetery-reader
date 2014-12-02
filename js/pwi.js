@@ -5,9 +5,10 @@ settings = {
           popupPlugin: $viewerSelected,
           showPhotoDownload: true,
           showPhotoCaption: true,
-          showPhotoFilename: true,
           thumbSize: 1024,
-          photoSize: 1600
+          photoSize: 1600,
+	  showPhotoDate: true,
+	  maxResults: 1,
           };
 $(".cem-shell-main-content").pwi(settings);
 };
