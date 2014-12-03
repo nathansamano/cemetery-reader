@@ -77,7 +77,7 @@ $('.cem-shell-main-content').alpaca({
 	    "lat": {
                "type": "text",
                "label": "Enter longitude",
-               "helper": "Negative = WEST",
+               "helper": "Negative = SOUTH",
                "validate": true,
                "disabled": false,
                "showMessages": true,
