@@ -31,6 +31,7 @@ app.configure( function () {
 routes.configRoutes( app, server );
 
 // -------------- END SERVER CONFIGURATION ----------------
+
 // ----------------- BEGIN START SERVER -------------------
 server.listen( 8000 );
 console.log(
