@@ -132,6 +132,7 @@ cem.shell = (function () {
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
+	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  break;
 	}
