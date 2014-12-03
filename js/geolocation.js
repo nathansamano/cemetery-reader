@@ -1,5 +1,5 @@
 geo_form = function(location) {
-console.log('Input data: ' + JSON.stringify(coordinates));
+// console.log('Input data: ' + JSON.stringify(location));
 $('.cem-shell-main-content').alpaca({
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load
