@@ -76,7 +76,7 @@ $('.cem-shell-main-content').alpaca({
             },
 	    "lat": {
                "type": "text",
-               "label": "Enter longitude",
+               "label": "Enter latitude",
                "helper": "Negative = SOUTH",
                "validate": true,
                "disabled": false,
