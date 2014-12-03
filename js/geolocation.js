@@ -1,24 +1,26 @@
-geo_form = function() {
+geo_form = function(location) {
+console.log('Input data: ' + JSON.stringify(coordinates));
 $('.cem-shell-main-content').alpaca({
-
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load
     // "schemaSource": "./serialization-schema.json",
     // "dataSource": "./serialization-data.json",
-
-   
+	"data": {
+	    "long": JSON.stringify(location[0]),
+	    "lat": JSON.stringify(location[1])
+	     },
         "schema": {
         "type": "object",
         "required": false,
         "properties": {
-            "lat": {
-                "type": "string",
-                "required": false
-            },
             "long": {
                 "type": "string",
                 "required": false
             },
+	    "lat": {
+		"type": "string",
+		"required": false
+		},
             "isBox": {
                 "type": "boolean",
                 "required": false
@@ -63,24 +65,24 @@ $('.cem-shell-main-content').alpaca({
            }, // form
 
         "fields": {
-            "lat": {
-                "type": "text",
-                "label": "Enter latitude",
-		"helper": "(Negative = South)",
-                "validate": true,
-                "disabled": false,
-                "showMessages": true,
-                "size": 40
-            },
             "long": {
                 "type": "text",
-                "label": "Enter Longitude",
-		"helper": "(Negative = West)",
+                "label": "Enter longitude",
+		"helper": "Negative = WEST",
                 "validate": true,
                 "disabled": false,
                 "showMessages": true,
                 "size": 40
             },
+	    "lat": {
+               "type": "text",
+               "label": "Enter longitude",
+               "helper": "Negative = WEST",
+               "validate": true,
+               "disabled": false,
+               "showMessages": true,
+               "size": 40
+		},
             "isBox": {
                 "type": "checkbox",
                 "label": "Is a bounding box?",
@@ -91,8 +93,5 @@ $('.cem-shell-main-content').alpaca({
             }
         }
     },
-    "data": {
-        "isBox": "false"
-    }
 });
 }
