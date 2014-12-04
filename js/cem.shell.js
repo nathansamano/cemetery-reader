@@ -123,6 +123,7 @@ cem.shell = (function () {
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl));
 	  break;
 	case 'pwi':
+	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(pwi_form());
 	  break;
