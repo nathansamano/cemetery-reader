@@ -27,7 +27,7 @@ cem.shell = (function () {
           +  ' data-id="cemetery">'
           +  'Cemetery Data Input</div>'
           + '<div class="cem-shell-list-menu"'
-          +  ' data-id="geolocation">'
+          +  ' data-id="geopoint">'
           +  'Geolocation Point Data</div>'
 	  +  '<div class="cem-shell-list-menu"'
 	  +  ' data-id="pwi">'
@@ -118,7 +118,7 @@ cem.shell = (function () {
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(cem_form());
 	  break;
-	case 'geolocation':
+	case 'geopoint':
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption,'Marker'));
 	  break;
