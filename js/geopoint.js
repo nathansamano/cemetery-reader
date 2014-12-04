@@ -38,6 +38,17 @@ $('.cem-shell-main-content').alpaca({
 		"type": "string",
 		"required": false
 		},
+	     "entity_class": {
+                "required": false,
+		"enum": [
+		   "Other",
+		   "Marker",
+		   "Structure",
+		   "Site",
+		   "Cemetery",
+		   "Populated Place"
+		   ]
+            },
 	    "url": {
                 "type": "string",
                 "required": false,
@@ -115,6 +126,15 @@ $('.cem-shell-main-content').alpaca({
                "showMessages": true,
                "size": 40
 		},
+	     "entity_class": {
+                "type": "select",
+                "label": "Type",
+                "validate": true,
+                "disabled": false,
+                "showMessages": true,
+                "emptySelectFirst": false,
+		"removeDefaultNone": true
+            },
 	    "url": {
                 "type": "url",
                 "label": "Location url",
