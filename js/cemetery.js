@@ -217,7 +217,7 @@ $('.cem-shell-main-content').alpaca({
 	"isActive": false
     },
     "view": {
-        "parent": "web-edit",
+        "parent": "bootstrap-edit",
         "layout": {
             "template": '/lib/layouts-example1-template.html',
             "bindings": {

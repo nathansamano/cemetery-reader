@@ -13,7 +13,7 @@ $('.cem-shell-main-content').alpaca({
 	    "long": JSON.stringify(location[0]),
 	    "lat": JSON.stringify(location[1])
 	     },
-	"view": "web-edit",
+	"view": "bootstrap-edit",
         "schema": {
         "type": "object",
         "required": false,
