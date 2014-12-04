@@ -30,7 +30,7 @@ var
 // ---------------- BEGIN PUBLIC METHODS ------------------
 
 // This probably doesn't belong here, but for now . . . 
-var booleans = { "cemetery": { "hasReading": false, "hasRegistry": false, "isActive": false },  "geolocation": { "isBox": false } },
+var booleans = { "cemetery": { "hasReading": false, "hasRegistry": false, "isActive": false } },
 key_name, 
 check_map,
 id;
