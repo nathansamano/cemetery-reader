@@ -1,14 +1,20 @@
-geo_form = function(location,url,caption) {
+geo_form = function(location,url,caption,etype) {
 
 // What if the user comes here first?
-if (typeof(location) == 'undefined')
+if (typeof(location) == 'undefined') {
+  // Not 100% sure on this etype thing . . 
   location = [0,0];
+  etype = 'Other';
+  }
 
 if (typeof(url) == 'undefined')
   url = '';
 
 if (typeof(caption) == 'undefined')
   caption = '';
+
+if (typeof(etype) == 'undefined')
+  etype = 'Other';
 
 $('.cem-shell-main-content').alpaca({
     // These files will pre-load form with data BUT
@@ -19,7 +25,8 @@ $('.cem-shell-main-content').alpaca({
 	    "long": JSON.stringify(location[0]),
 	    "lat": JSON.stringify(location[1]),
 	    "url": url,
-	    "desc": caption
+	    "desc": caption,
+	    "entity_class": etype
 	     },
 	"view": "bootstrap-edit",
         "schema": {

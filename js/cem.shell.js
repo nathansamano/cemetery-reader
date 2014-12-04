@@ -120,7 +120,7 @@ cem.shell = (function () {
 	  break;
 	case 'geolocation':
 	  jqueryMap.$main.empty();
-	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption));
+	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption,'Marker'));
 	  break;
 	case 'pwi':
 	  jqueryMap.$footer.empty();
