@@ -22,7 +22,7 @@ cem.shell = (function () {
         + '</div>'
         + '<div class="cem-shell-main">'
           + '<div class="cem-shell-main-nav">'
-	  + '<h2>Temporary Menu:</h2>'
+	  + '<h3>Temporary Menu:</h3>'
 	  + '<div class="cem-shell-list-menu"'
           +  ' data-id="cemetery">'
           +  'Cemetery Data Input</div>'
@@ -128,7 +128,7 @@ cem.shell = (function () {
 	  break;
 	case 'pwi-get':
 	  jqueryMap.$footer.empty();
-	  jqueryMap.$footer.append('<h3>' + JSON.stringify(pwi.returnDataMap) + '</h3>');
+	  jqueryMap.$footer.append(JSON.stringify(pwi.returnDataMap));
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
