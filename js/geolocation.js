@@ -1,5 +1,9 @@
 geo_form = function(location) {
-// console.log('Input data: ' + JSON.stringify(location));
+
+// What if the user comes here first?
+if (typeof(location) == 'undefined')
+  location = [0,0];
+
 $('.cem-shell-main-content').alpaca({
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load
