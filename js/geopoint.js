@@ -90,7 +90,7 @@ $('.cem-shell-main-content').alpaca({
                     // Send the data to the server via HTML POST
                     $.ajax({
                       type: "POST",
-                      url: "geolocation/create",
+                      url: "geopoint/create",
                       data: {json:JSON.stringify(formData)},
                       // Render response from server in alert box
                       success: function(data, msg, xhr) {

@@ -8,7 +8,7 @@ db.counters.insert(
 
 db.counters.insert(
    {                                                                            
-      _id: "geolocation",
+      _id: "geopoint",
       seq: 0,                                                                   
    }
 )
