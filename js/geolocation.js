@@ -1,8 +1,11 @@
-geo_form = function(location) {
+geo_form = function(location,url) {
 
 // What if the user comes here first?
 if (typeof(location) == 'undefined')
   location = [0,0];
+
+if (typeof(url) == 'undefined')
+  url = '';
 
 $('.cem-shell-main-content').alpaca({
     // These files will pre-load form with data BUT
@@ -11,7 +14,8 @@ $('.cem-shell-main-content').alpaca({
     // "dataSource": "./serialization-data.json",
 	"data": {
 	    "long": JSON.stringify(location[0]),
-	    "lat": JSON.stringify(location[1])
+	    "lat": JSON.stringify(location[1]),
+	    "url": url
 	     },
 	"view": "bootstrap-edit",
         "schema": {
