@@ -18,6 +18,10 @@ $('.cem-shell-main-content').alpaca({
         "type": "object",
         "required": false,
         "properties": {
+	     "desc": {
+                "type": "string",
+                "required": false
+            },
             "long": {
                 "type": "string",
                 "required": false
@@ -26,9 +30,11 @@ $('.cem-shell-main-content').alpaca({
 		"type": "string",
 		"required": false
 		},
-            "isBox": {
-                "type": "boolean",
-                "required": false
+	    "url": {
+                "type": "string",
+                "required": false,
+                "pattern": {},
+                "format": "uri"
             }
         }
     },
@@ -70,6 +76,16 @@ $('.cem-shell-main-content').alpaca({
            }, // form
 
         "fields": {
+	    "desc": {
+                "type": "text",
+                "label": "Description",
+                "validate": true,
+                "disabled": false,
+                "showMessages": true,
+                "size": 40,
+                "data": {},
+                "attributes": {}
+            },
             "long": {
                 "type": "text",
                 "label": "Enter longitude",
@@ -88,13 +104,15 @@ $('.cem-shell-main-content').alpaca({
                "showMessages": true,
                "size": 40
 		},
-            "isBox": {
-                "type": "checkbox",
-                "label": "Is a bounding box?",
-                "validate": true,
+	    "url": {
+                "type": "url",
+                "label": "Location url",
+                "validate": false,
                 "disabled": false,
                 "showMessages": true,
-                "rightLabel": ""
+                "size": 40,
+                "data": {},
+                "attributes": {}
             }
         }
     },
