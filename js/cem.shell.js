@@ -116,8 +116,10 @@ cem.shell = (function () {
     // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
 	case 'cemetery':
+	  // If we were just displaying photos
 	  if (pwiDisplayed)
 		// pwiHarbor['main']  = jqueryMap.$main.clone(true,true);
+		// If nobody else has cached the image div
 		if (! pwiHarborSet) {
 		  pwiHarborSet = true;
 		  pwiHarbor['main'] = jqueryMap.$main.html();
@@ -137,11 +139,12 @@ cem.shell = (function () {
 	case 'pwi':
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
-	  // Show cached map if available
+	  // Show (non-clickable) cached map if available
 	  if (pwiDisplayed) {
 		jqueryMap.$main.append(pwiHarbor['main']);
 		}
 	  else {
+		// Set display flag and call main PWI app
 		pwiDisplayed = true;
 	  	jqueryMap.$main.append(pwi_form());
 		}
