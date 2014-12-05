@@ -38,7 +38,7 @@ cem.shell = (function () {
 	  +  'Show PWI Data</div>'
           + '<div class="cem-shell-list-menu"'
           +  ' data-id="clear">'
-          +  'Clear Areas</div></div>'
+          +  'Clear All</div></div>'
           + '<div class="cem-shell-main-content">'
 	  + '</div>'
         + '</div>'
