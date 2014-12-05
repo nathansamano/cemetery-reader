@@ -155,6 +155,7 @@ cem.shell = (function () {
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
+	  // To Do: Clear form contents too!
 	  delete pwiHarbor['main'];
 	  pwiDisplayed = false;
 	  pwiHarborSet = false;
