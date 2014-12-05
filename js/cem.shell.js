@@ -21,6 +21,7 @@ cem.shell = (function () {
           + '<div class="cem-shell-head-acct"></div>'
         + '</div>'
         + '<div class="cem-shell-main">'
+	  // Display main menu; this needs to be done with code
           + '<div class="cem-shell-main-nav">'
 	  + '<h3>Temporary Menu:</h3>'
 	  + '<div class="cem-shell-list-menu"'
@@ -54,7 +55,8 @@ cem.shell = (function () {
     copyAnchorMap,    setJqueryMap,   changeAnchorPart,
     onResize,         onHashchange,   onTapList,
     onTapAcct,        onLogin,        onLogout,
-    setChatAnchor,    initModule;
+    setChatAnchor,    initModule,     pwiDisplayed,
+    pwiHarborSet,     pwiHarbor = {};
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -109,23 +111,40 @@ cem.shell = (function () {
 
   // Event handler /onTapList/
   onTapList = function ( event ) {
-    // Testing to see if we can pass menu item via handler
+    // React to taps on menu in nav div
     var menu_item  = $(this).data("id"), form;
-    console.log('Tapped on ' + menu_item);
-    //jqueryMap.$main.empty();
+    // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
 	case 'cemetery':
+	  if (pwiDisplayed)
+		// pwiHarbor['main']  = jqueryMap.$main.clone(true,true);
+		if (! pwiHarborSet) {
+		  pwiHarborSet = true;
+		  pwiHarbor['main'] = jqueryMap.$main.html();
+		  }
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geopoint':
+          if (pwiDisplayed) 
+		if (!pwiHarborSet) {
+		  pwiHarborSet = true;
+		  pwiHarbor['main'] = jqueryMap.$main.html();
+		  }
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption,'Marker'));
 	  break;
 	case 'pwi':
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
-	  jqueryMap.$main.append(pwi_form());
+	  // Show cached map if available
+	  if (pwiDisplayed) {
+		jqueryMap.$main.append(pwiHarbor['main']);
+		}
+	  else {
+		pwiDisplayed = true;
+	  	jqueryMap.$main.append(pwi_form());
+		}
 	  break;
 	case 'pwi-get':
 	  jqueryMap.$footer.empty();
@@ -133,6 +152,9 @@ cem.shell = (function () {
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
+	  delete pwiHarbor['main'];
+	  pwiDisplayed = false;
+	  pwiHarborSet = false;
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  break;
@@ -163,7 +185,8 @@ cem.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-
+    pwiDisplayed = false;
+    pwiHarborSet = false;
     // $.gevent.subscribe( $container, 'spa-login',  onLogin  );
     // $.gevent.subscribe( $container, 'spa-logout', onLogout );
 
