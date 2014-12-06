@@ -119,19 +119,25 @@ cem.shell = (function () {
     // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
 	case 'cemetery':
-	  jqueryMap.$plugin.hide();
-	  jqueryMap.$main.empty();
+	  if (pwiDisplayed) {
+	    jqueryMap.$plugin.hide();
+	    jqueryMap.$main.empty();
+	    }
 	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geopoint':
-	  jqueryMap.$plugin.hide();
-	  jqueryMap.$main.empty();
+	  if (pwiDisplayed) {
+	    jqueryMap.$plugin.hide();
+	    jqueryMap.$main.empty();
+	    }
 	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
 	  break;
 	case 'pwi':
+	  pwiDisplayed = true;
 	  jqueryMap.$footer.empty();
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.hide();
 	  jqueryMap.$plugin.show();
 	  jqueryMap.$plugin.append(pwi_form());
@@ -147,6 +153,7 @@ cem.shell = (function () {
 	  jqueryMap.$main.empty();
 	  jqueryMap.$plugin.empty();
 	  delete returnDataMap['coordinates'];
+	  pwiDisplayed = false;
 	  break;
 	}
     return false;
@@ -176,7 +183,7 @@ cem.shell = (function () {
     $container.html( configMap.main_html );
     setJqueryMap();
     pwiDisplayed = false;
-    pwiHarborSet = false;
+    jqueryMap.$plugin.hide();
     // $.gevent.subscribe( $container, 'spa-login',  onLogin  );
     // $.gevent.subscribe( $container, 'spa-logout', onLogout );
 
