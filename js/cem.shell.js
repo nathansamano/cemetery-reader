@@ -152,6 +152,7 @@ cem.shell = (function () {
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  jqueryMap.$plugin.empty();
+	  jqueryMap.$plugin.hide();
 	  jqueryMap.$main.show();
 	  // Unset any lingering coordinates, too
 	  if ( typeof(returnDataMap) == 'object') 
