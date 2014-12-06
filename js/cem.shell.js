@@ -135,12 +135,17 @@ cem.shell = (function () {
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
 	  break;
 	case 'pwi':
-	  pwiDisplayed = true;
-	  jqueryMap.$footer.empty();
-	  jqueryMap.$main.empty();
-	  jqueryMap.$main.hide();
-	  jqueryMap.$plugin.show();
-	  jqueryMap.$plugin.append(pwi_form());
+	  if (pwiDisplayed == false) {
+	     pwiDisplayed = true;
+	     jqueryMap.$footer.empty();
+	     jqueryMap.$main.empty();
+	     jqueryMap.$main.hide();
+	     jqueryMap.$plugin.show();
+	     jqueryMap.$plugin.append(pwi_form());
+	  } else {
+	     jqueryMap.$main.hide();
+	     jqueryMap.$plugin.show();
+	     }
 	  break;
 	case 'pwi-get':
 	  jqueryMap.$footer.empty();
