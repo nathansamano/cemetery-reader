@@ -128,7 +128,7 @@ cem.shell = (function () {
 	  jqueryMap.$plugin.hide();
 	  jqueryMap.$main.empty();
 	  jqueryMap.$main.show();
-	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption,'Marker'));
+	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
 	  break;
 	case 'pwi':
 	  jqueryMap.$footer.empty();

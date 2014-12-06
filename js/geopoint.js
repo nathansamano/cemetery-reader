@@ -1,17 +1,12 @@
-geo_form = function(location,url,caption,etype) {
+geo_form = function(form_data,etype) {
 
 // What if the user comes here first?
-if (typeof(location) == 'undefined') {
-  // Not 100% sure on this etype thing . . 
+if (typeof(form_data) == 'undefined') {
   location = [0,0];
+  url = '';
+  caption = '';
   etype = 'Other';
   }
-
-if (typeof(url) == 'undefined')
-  url = '';
-
-if (typeof(caption) == 'undefined')
-  caption = '';
 
 if (typeof(etype) == 'undefined')
   etype = 'Other';
@@ -22,10 +17,10 @@ $('.cem-shell-main-content').alpaca({
     // "schemaSource": "./serialization-schema.json",
     // "dataSource": "./serialization-data.json",
 	"data": {
-	    "long": JSON.stringify(location[0]),
-	    "lat": JSON.stringify(location[1]),
-	    "url": url,
-	    "desc": caption,
+	    "long": JSON.stringify(form_data['coordinates'][0]),
+	    "lat": JSON.stringify(form_data['coordinates'][1]),
+	    "url": form_data['url'],
+	    "desc": form_data['caption'],
 	    "entity_class": etype
 	     },
 	"view": "bootstrap-edit",
