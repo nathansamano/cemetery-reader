@@ -10,5 +10,5 @@ settings = {
 	  showPhotoDate: true,
 	  maxResults: 1,
           };
-$(".cem-shell-main-content").pwi(settings);
+$(".cem-shell-plugin-content").pwi(settings);
 };
