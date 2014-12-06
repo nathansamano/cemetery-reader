@@ -41,6 +41,8 @@ cem.shell = (function () {
           +  'Clear All</div></div>'
           + '<div class="cem-shell-main-content">'
 	  + '</div>'
+	  + '<div class="cem-shell-plugin-content">'
+	  + '</div>'
         + '</div>'
         + '<div class="cem-shell-foot"></div>'
         + '<div class="cem-shell-modal"></div>'
@@ -77,6 +79,7 @@ cem.shell = (function () {
       $acct      : $container.find('.cem-shell-head-acct'),
       $nav       : $container.find('.cem-shell-main-nav'),
       $main	 : $container.find('.cem-shell-main-content'),
+      $plugin	 : $container.find('.cem-shell-plugin-content'),
       $menu	 : $container.find('.cem-shell-list-menu'),
       $footer 	 : $container.find('.cem-shell-foot')
     };
@@ -116,38 +119,22 @@ cem.shell = (function () {
     // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
 	case 'cemetery':
-	  // If we were just displaying photos
-	  if (pwiDisplayed)
-		// pwiHarbor['main']  = jqueryMap.$main.clone(true,true);
-		// If nobody else has cached the image div
-		if (! pwiHarborSet) {
-		  pwiHarborSet = true;
-		  pwiHarbor['main'] = jqueryMap.$main.html();
-		  }
+	  jqueryMap.$plugin.hide();
 	  jqueryMap.$main.empty();
+	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geopoint':
-          if (pwiDisplayed) 
-		if (!pwiHarborSet) {
-		  pwiHarborSet = true;
-		  pwiHarbor['main'] = jqueryMap.$main.html();
-		  }
+	  jqueryMap.$plugin.hide();
 	  jqueryMap.$main.empty();
+	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap.coordinates, pwi.returnDataMap.imageurl, pwi.returnDataMap.caption,'Marker'));
 	  break;
 	case 'pwi':
 	  jqueryMap.$footer.empty();
-	  jqueryMap.$main.empty();
-	  // Show (non-clickable) cached map if available
-	  if (pwiDisplayed) {
-		jqueryMap.$main.append(pwiHarbor['main']);
-		}
-	  else {
-		// Set display flag and call main PWI app
-		pwiDisplayed = true;
-	  	jqueryMap.$main.append(pwi_form());
-		}
+	  jqueryMap.$main.hide();
+	  jqueryMap.$plugin.show();
+	  jqueryMap.$plugin.append(pwi_form());
 	  break;
 	case 'pwi-get':
 	  jqueryMap.$footer.empty();
@@ -156,11 +143,9 @@ cem.shell = (function () {
 	  break;
 	case 'clear':
 	  // To Do: Clear form contents too!
-	  delete pwiHarbor['main'];
-	  pwiDisplayed = false;
-	  pwiHarborSet = false;
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
+	  jqueryMap.$plugin.empty();
 	  break;
 	}
     return false;
