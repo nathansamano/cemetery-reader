@@ -121,16 +121,16 @@ cem.shell = (function () {
 	case 'cemetery':
 	  if (pwiDisplayed) {
 	    jqueryMap.$plugin.hide();
-	    jqueryMap.$main.empty();
 	    }
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geopoint':
 	  if (pwiDisplayed) {
 	    jqueryMap.$plugin.hide();
-	    jqueryMap.$main.empty();
 	    }
+	  jqueryMap.$main.empty();
 	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
 	  break;
