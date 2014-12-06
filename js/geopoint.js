@@ -1,15 +1,20 @@
 geo_form = function(form_data,etype) {
 
-// What if the user comes here first?
-if (typeof(form_data) == 'undefined') {
-  location = [0,0];
-  url = '';
-  caption = '';
-  etype = 'Other';
-  }
+// What if the user comes here before opening an image?
+  var long, lat, url, caption, entity_type;
+  if ( typeof(form_data['coordinates']) == 'undefined') {
+    long = 0; lat = 0; url = ''; desc = ''; entity_type = 'Other';
+    } 
+  else {
+    long = JSON.stringify(form_data['coordinates'][0]);
+    lat = JSON.stringify(form_data['coordinates'][1]);
+    url = form_data['url'];
+    caption = form_data['caption'];
+    entity_type = etype;
+    } 
 
 if (typeof(etype) == 'undefined')
-  etype = 'Other';
+  entity_type = 'Other';
 
 $('.cem-shell-main-content').alpaca({
     // These files will pre-load form with data BUT
@@ -17,11 +22,11 @@ $('.cem-shell-main-content').alpaca({
     // "schemaSource": "./serialization-schema.json",
     // "dataSource": "./serialization-data.json",
 	"data": {
-	    "long": JSON.stringify(form_data['coordinates'][0]),
-	    "lat": JSON.stringify(form_data['coordinates'][1]),
-	    "url": form_data['url'],
-	    "desc": form_data['caption'],
-	    "entity_class": etype
+	    "long": long,
+	    "lat": lat,
+	    "url": url,
+	    "desc": caption,
+	    "entity_class": entity_type
 	     },
 	"view": "bootstrap-edit",
         "schema": {

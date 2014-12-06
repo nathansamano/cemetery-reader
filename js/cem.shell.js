@@ -146,6 +146,7 @@ cem.shell = (function () {
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  jqueryMap.$plugin.empty();
+	  delete returnDataMap['coordinates'];
 	  break;
 	}
     return false;
