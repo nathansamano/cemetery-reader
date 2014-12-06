@@ -1,7 +1,8 @@
 geo_form = function(form_data,etype) {
 
 // What if the user comes here before opening an image?
-  var long, lat, url, caption, entity_type;
+  var long, lat, url, caption, entity_type, regex = /(<([^>]+)>)/ig;
+  
   if ( typeof(form_data['coordinates']) == 'undefined') {
     long = 0; lat = 0; url = ''; desc = ''; entity_type = 'Other';
     } 
@@ -9,7 +10,7 @@ geo_form = function(form_data,etype) {
     long = JSON.stringify(form_data['coordinates'][0]);
     lat = JSON.stringify(form_data['coordinates'][1]);
     url = form_data['imageurl'];
-    caption = form_data['caption'];
+    caption = form_data['caption'].replace(regex," ");
     entity_type = etype;
     } 
 
