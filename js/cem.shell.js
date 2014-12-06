@@ -152,7 +152,10 @@ cem.shell = (function () {
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$main.empty();
 	  jqueryMap.$plugin.empty();
-	  delete returnDataMap['coordinates'];
+	  jqueryMap.$main.show();
+	  // Unset any lingering coordinates, too
+	  if ( typeof(returnDataMap) == 'object') 
+	    delete pwi.returnDataMap['coordinates'];
 	  pwiDisplayed = false;
 	  break;
 	}
