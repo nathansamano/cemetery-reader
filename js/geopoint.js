@@ -8,7 +8,7 @@ geo_form = function(form_data,etype) {
   else {
     long = JSON.stringify(form_data['coordinates'][0]);
     lat = JSON.stringify(form_data['coordinates'][1]);
-    url = form_data['url'];
+    url = form_data['imageurl'];
     caption = form_data['caption'];
     entity_type = etype;
     } 
