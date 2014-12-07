@@ -5,10 +5,12 @@
 
 .cem-shell-head, .cem-shell-head-logo, .cem-shell-head-acct,
 .cem-shell-head-search, .cem-shell-main, .cem-shell-main-nav,
-.cem-shell-main-content, .cem-shell-plugin-content, .cem-shell-foot,
+.cem-shell-cem-content, .cem-shell-plugin-content, .cem-shell-geo-content,
+.cem-shell-marker-content, .cem-shell-foot, 
 .cem-shell-modal {
   position : absolute;
 }
+
 .cem-shell-head {
   top    : 0;
   left   : 0;
@@ -50,8 +52,10 @@
   bottom : 40px;
   right  : 0;
 }
-.cem-shell-main-content,
+.cem-shell-cem-content,
 .cem-shell-plugin-content,
+.cem-shell-geo-content,
+.cem-shell-marker-content,
 .cem-shell-main-nav {
   top    : 0;
   bottom : 0;
@@ -73,7 +77,7 @@
   cursor: pointer;
 }
 
-.cem-shell-main-content {
+.cem-shell-cem-content {
   left  : 400px;
   right : 0px;
   background : #ddd;
@@ -87,7 +91,21 @@
   overflow-y:auto;
 }
 
-  .cem-x-closed .cem-shell-main-content {
+.cem-shell-geo-content {
+  left : 400px;
+  right: 0px;
+  background : #ddd;
+  overflow-y:auto;
+}
+
+.cem-shell-marker-content {
+  left : 400px;
+  right: 0px;
+  background : #ddd;
+  overflow-y:auto;
+}
+
+  .cem-x-closed .cem-shell-cem-content {
     left : 0;
   }
 

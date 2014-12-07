@@ -1,5 +1,5 @@
 cem_form = function() {
-$('.cem-shell-main-content').alpaca({
+$('.cem-shell-cem-content').alpaca({
 
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load
@@ -67,6 +67,7 @@ $('.cem-shell-main-content').alpaca({
 
             "establishedDate": {
                 "type": "text",
+		"format": "date",
                 "required": false
             },
             "hasRegistry": {

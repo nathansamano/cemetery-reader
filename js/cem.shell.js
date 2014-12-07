@@ -42,10 +42,10 @@ cem.shell = (function () {
           + '<div class="cem-shell-list-menu"'
           +  ' data-id="clear">'
           +  'Clear All</div></div>'
-          + '<div class="cem-shell-main-content">'
-	  + '</div>'
-	  + '<div class="cem-shell-plugin-content">'
-	  + '</div>'
+          + '<div class="cem-shell-cem-content"></div>'
+	  + '<div class="cem-shell-geo-content"></div>'
+	  + '<div class="cem-shell-marker-content"></div>'
+	  + '<div class="cem-shell-plugin-content"></div>'
         + '</div>'
         + '<div class="cem-shell-foot"></div>'
         + '<div class="cem-shell-modal"></div>'
@@ -60,8 +60,9 @@ cem.shell = (function () {
     copyAnchorMap,    setJqueryMap,   changeAnchorPart,
     onResize,         onHashchange,   onTapList,
     onTapAcct,        onLogin,        onLogout,
-    setChatAnchor,    initModule,     pwiDisplayed,
-    pwiHarborSet,     pwiHarbor = {};
+    setChatAnchor,    initModule,     $activeDiv,
+    $divToHide,	      cemValid,	      geoValid,
+    markerValid,      pwiValid;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -81,8 +82,10 @@ cem.shell = (function () {
       $container : $container,
       $acct      : $container.find('.cem-shell-head-acct'),
       $nav       : $container.find('.cem-shell-main-nav'),
-      $main	 : $container.find('.cem-shell-main-content'),
-      $plugin	 : $container.find('.cem-shell-plugin-content'),
+      $cem	 : $container.find('.cem-shell-cem-content'),
+      $pwi	 : $container.find('.cem-shell-plugin-content'),
+      $geo	 : $container.find('.cem-shell-geo-content'),
+      $marker	 : $container.find('.cem-shell-marker-content'),
       $menu	 : $container.find('.cem-shell-list-menu'),
       $footer 	 : $container.find('.cem-shell-foot')
     };
@@ -118,62 +121,74 @@ cem.shell = (function () {
   // Event handler /onTapList/
   onTapList = function ( event ) {
     // React to taps on menu in nav div
-    var menu_item  = $(this).data("id"), form;
+    var menu_item  = $(this).data("id");
     // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
 	case 'cemetery':
-	  if (pwiDisplayed) {
-	    jqueryMap.$plugin.hide();
+	  if ($activeDiv == jqueryMap.$cem) return;
+	  $divToHide = $activeDiv;
+	  $activeDiv = jqueryMap.$cem;
+	  if (typeof($divToHide) != 'undefined') $divToHide.hide();
+	  jqueryMap.$cem.show();
+          if (  cemValid  == false ) {
+            cemValid = true;
+	    jqueryMap.$cem.append(cem_form());
 	    }
-	  jqueryMap.$main.empty();
-	  jqueryMap.$main.show();
-	  jqueryMap.$main.append(cem_form());
 	  break;
 	case 'geopoint':
-	  if (pwiDisplayed) {
-	    jqueryMap.$plugin.hide();
-	    }
-	  jqueryMap.$main.empty();
-	  jqueryMap.$main.show();
-	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
+	  if ($activeDiv == jqueryMap.$geo) return;
+          $divToHide = $activeDiv;
+          $activeDiv = jqueryMap.$geo;
+          if (typeof($divToHide) != 'undefined') $divToHide.hide();
+          jqueryMap.$geo.show();
+          if ( geoValid == false || pwiValid == true ) {
+console.log('Fresh-ish geopoint with valids G/P : ' + geoValid + ' ' + pwiValid);
+            geoValid = true;
+	    jqueryMap.$geo.empty();	
+            jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
+            }
 	  break;
 	case 'marker':
-	  if ( pwiDisplayed ) {
-	    jqueryMap.$plugin.hide();
-	    }
-          jqueryMap.$main.empty();
-          jqueryMap.$main.show();
-          jqueryMap.$main.append(marker_form());
+          if ($activeDiv == jqueryMap.$marker) return;
+          $divToHide = $activeDiv;
+          $activeDiv = jqueryMap.$marker;
+          if (typeof($divToHide) != 'undefined') $divToHide.hide();
+          jqueryMap.$marker.show();
+          if ( ! markerValid ) {
+            markerValid = true;
+            jqueryMap.$marker.append(marker_form());
+            }
           break;
+
 	case 'pwi':
-	  if (pwiDisplayed == false) {
-	     pwiDisplayed = true;
-	     jqueryMap.$footer.empty();
-	     jqueryMap.$main.empty();
-	     jqueryMap.$main.hide();
-	     jqueryMap.$plugin.show();
-	     jqueryMap.$plugin.append(pwi_form());
-	  } else {
-	     jqueryMap.$main.hide();
-	     jqueryMap.$plugin.show();
-	     }
-	  break;
+          if ($activeDiv == jqueryMap.$pwi) return;
+          $divToHide = $activeDiv;
+          $activeDiv = jqueryMap.$pwi;
+          if (typeof($divToHide) != 'undefined') $divToHide.hide();
+          jqueryMap.$pwi.show();
+          if ( ! pwiValid ) {
+            pwiValid = true;
+            jqueryMap.$geo.append(pwi_form());
+            }
+          break;
+
 	case 'pwi-get':
 	  jqueryMap.$footer.empty();
 	  jqueryMap.$footer.append(JSON.stringify(pwi.returnDataMap));
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
-	  // To Do: Clear form contents too!
+	  // Set everything back to starting state . . 
+	  cemValid = geoValid = markerValid = pwiValid = false;
 	  jqueryMap.$footer.empty();
-	  jqueryMap.$main.empty();
-	  jqueryMap.$plugin.empty();
-	  jqueryMap.$plugin.hide();
-	  jqueryMap.$main.show();
+	  jqueryMap.$cem.empty();
+	  jqueryMap.$geo.empty();
+	  jqueryMap.$pwi.empty();
+	  jqueryMap.$marker.empty();
+	  $activeDiv.hide();
 	  // Unset any lingering coordinates, too
 	  if ( typeof(returnDataMap) == 'object') 
 	    delete pwi.returnDataMap['coordinates'];
-	  pwiDisplayed = false;
 	  break;
 	}
     return false;
@@ -202,8 +217,11 @@ cem.shell = (function () {
     stateMap.$container = $container;
     $container.html( configMap.main_html );
     setJqueryMap();
-    pwiDisplayed = false;
-    jqueryMap.$plugin.hide();
+    jqueryMap.$cem.hide();
+    jqueryMap.$geo.hide();
+    jqueryMap.$marker.hide();
+    jqueryMap.$pwi.hide();
+    cemValid = geoValid = markerValid = pwiValid = false;
     // $.gevent.subscribe( $container, 'spa-login',  onLogin  );
     // $.gevent.subscribe( $container, 'spa-logout', onLogout );
 
