@@ -8,7 +8,11 @@ $('.cem-shell-main-content').alpaca({
                 "type": "string",
                 "required": false
             },
-            "location_id": {
+            "geopoint_id": {
+                "type": "string",
+                "required": false
+            },
+	    "location": {
                 "type": "string",
                 "required": false
             },
@@ -29,7 +33,7 @@ $('.cem-shell-main-content').alpaca({
                 "required": false
             },
             "condition": {
-                "required": false,
+                "required": true,
 		"enum": [
 		"Renovated",
 		"Excellent",
@@ -54,6 +58,29 @@ $('.cem-shell-main-content').alpaca({
         "showMessages": true,
         "collapsible": true,
         "legendStyle": "button",
+     "form":{
+            "buttons":{
+               "submit": {
+                  "click":function(e){
+                    var formData = this.getValue();
+                    // Send the data to the server via HTML POST
+                    $.ajax({
+                      type: "POST",
+                      url: "marker/create",
+                      data: {json:JSON.stringify(formData)},
+                      // Render response from server in alert box
+                      success: function(data, msg, xhr) {
+                        alert(JSON.stringify(data));
+                      } // success
+                     }); // ajax
+                   // You would think this would be documented . . .
+                   // this.reset();
+                   } // click
+                 }, // submit
+                "reset": {}
+              } // buttons
+           }, // form
+
         "fields": {
             "cemetery_id": {
                 "type": "text",
@@ -65,9 +92,20 @@ $('.cem-shell-main-content').alpaca({
                 "data": {},
                 "attributes": {}
             },
-            "location_id": {
+            "geopoint_id": {
+                "type": "text",
+                "label": "Geolocation",
+                "validate": true,
+                "disabled": false,
+                "showMessages": true,
+                "size": 40,
+                "data": {},
+                "attributes": {}
+            },
+	    "location": {
                 "type": "text",
                 "label": "Location",
+		"helper": "E.g. W Sec, Row 4, Pos 3",
                 "validate": true,
                 "disabled": false,
                 "showMessages": true,
@@ -120,7 +158,7 @@ $('.cem-shell-main-content').alpaca({
                 "validate": true,
                 "disabled": false,
                 "showMessages": true,
-                "emptySelectFirst": false
+                "emptySelectFirst": false,
             },
 	    "condition_comment": {
                 "type": "text",
@@ -135,28 +173,6 @@ $('.cem-shell-main-content').alpaca({
 
         }
     },
-    "form":{
-            "buttons":{
-               "submit": {
-                  "click":function(e){
-                    var formData = this.getValue();
-                    // Send the data to the server via HTML POST
-                    $.ajax({
-                      type: "POST",
-                      url: "marker/create",
-                      data: {json:JSON.stringify(formData)},
-                      // Render response from server in alert box
-                      success: function(data, msg, xhr) {
-                        alert(JSON.stringify(data));
-                      } // success
-                     }); // ajax
-                   // You would think this would be documented . . .
-                   // this.reset();
-                   } // click
-                 }, // submit
-                "reset": {}
-              } // buttons
-           }, // form
     "data": {
         "isMultipleBurial": false,
         "isMultipleMarker": false
