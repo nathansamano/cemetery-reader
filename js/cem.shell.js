@@ -31,7 +31,10 @@ cem.shell = (function () {
           +  ' data-id="geopoint">'
           +  'Geolocation Point Data</div>'
 	  +  '<div class="cem-shell-list-menu"'
-	  +  ' data-id="pwi">'
+	  +  ' data-id="marker">'
+	  +  'Marker Details</div>'
+	  + '<div class="cem-shell-list-menu"'
+          +  ' data-id="pwi">'
 	  +  ' PWI Plugin</div>'
 	  +  '<div class="cem-shell-list-menu"'
 	  +  ' data-id="pwi-get">'
@@ -134,6 +137,14 @@ cem.shell = (function () {
 	  jqueryMap.$main.show();
 	  jqueryMap.$main.append(geo_form(pwi.returnDataMap,'Marker'));
 	  break;
+	case 'marker':
+	  if ( pwiDisplayed ) {
+	    jqueryMap.$plugin.hide();
+	    }
+          jqueryMap.$main.empty();
+          jqueryMap.$main.show();
+          jqueryMap.$main.append(marker_form());
+          break;
 	case 'pwi':
 	  if (pwiDisplayed == false) {
 	     pwiDisplayed = true;
