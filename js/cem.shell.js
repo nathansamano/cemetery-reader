@@ -62,7 +62,7 @@ cem.shell = (function () {
     onTapAcct,        onLogin,        onLogout,
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
-    markerValid,      pwiValid;
+    markerValid,      pwiValid,	      swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -91,6 +91,17 @@ cem.shell = (function () {
     };
   };
   // End DOM method /setJqueryMap/
+
+  // swapDivs: convenience function when switching screens 
+  swapDivs = function($newDiv) {
+          if ( $activeDiv == $newDiv ) return;
+          $divToHide = $activeDiv;
+          $activeDiv = $newDiv;
+          if (typeof($divToHide) != 'undefined') $divToHide.hide();
+          $newDiv.show();
+          return;
+          }
+
 
   //--------------------- END DOM METHODS ----------------------
 
@@ -124,36 +135,26 @@ cem.shell = (function () {
     var menu_item  = $(this).data("id");
     // console.log('Tapped on ' + menu_item);
     switch(menu_item) {
+
 	case 'cemetery':
-	  if ($activeDiv == jqueryMap.$cem) return;
-	  $divToHide = $activeDiv;
-	  $activeDiv = jqueryMap.$cem;
-	  if (typeof($divToHide) != 'undefined') $divToHide.hide();
-	  jqueryMap.$cem.show();
+	  swapDivs(jqueryMap.$cem);
           if (  cemValid  == false ) {
             cemValid = true;
 	    jqueryMap.$cem.append(cem_form());
 	    }
 	  break;
+
 	case 'geopoint':
-	  if ($activeDiv == jqueryMap.$geo) return;
-          $divToHide = $activeDiv;
-          $activeDiv = jqueryMap.$geo;
-          if (typeof($divToHide) != 'undefined') $divToHide.hide();
-          jqueryMap.$geo.show();
+	  swapDivs(jqueryMap.$geo);
           if ( geoValid == false || pwiValid == true ) {
-console.log('Fresh-ish geopoint with valids G/P : ' + geoValid + ' ' + pwiValid);
             geoValid = true;
 	    jqueryMap.$geo.empty();	
             jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
             }
 	  break;
+
 	case 'marker':
-          if ($activeDiv == jqueryMap.$marker) return;
-          $divToHide = $activeDiv;
-          $activeDiv = jqueryMap.$marker;
-          if (typeof($divToHide) != 'undefined') $divToHide.hide();
-          jqueryMap.$marker.show();
+	  swapDivs(jqueryMap.$marker);
           if ( ! markerValid ) {
             markerValid = true;
             jqueryMap.$marker.append(marker_form());
@@ -161,11 +162,7 @@ console.log('Fresh-ish geopoint with valids G/P : ' + geoValid + ' ' + pwiValid)
           break;
 
 	case 'pwi':
-          if ($activeDiv == jqueryMap.$pwi) return;
-          $divToHide = $activeDiv;
-          $activeDiv = jqueryMap.$pwi;
-          if (typeof($divToHide) != 'undefined') $divToHide.hide();
-          jqueryMap.$pwi.show();
+	  swapDivs(jqueryMap.$pwi);
           if ( ! pwiValid ) {
             pwiValid = true;
             jqueryMap.$geo.append(pwi_form());
@@ -238,5 +235,6 @@ console.log('Fresh-ish geopoint with valids G/P : ' + geoValid + ' ' + pwiValid)
   // End PUBLIC method /initModule/
   };
   return { initModule : initModule };
+	
   //------------------- END PUBLIC METHODS ---------------------
 }());
