@@ -145,7 +145,7 @@ $('.cem-shell-main-content').alpaca({
             },
 	    "url": {
                 "type": "url",
-                "label": "Location url",
+                "label": "Document url",
                 "validate": false,
                 "disabled": false,
                 "showMessages": true,
