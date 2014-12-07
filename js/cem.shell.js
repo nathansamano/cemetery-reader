@@ -15,7 +15,7 @@ cem.shell = (function () {
       main_html : String()
         + '<div class="cem-shell-head">'
           + '<div class="cem-shell-head-logo">'
-            + '<h1>CEMSPA</h1>'
+            + '<h1>CEM/SPA</h1>'
             + '<p>The past is a gift to the future . . </p>'
           + '</div>'
           + '<div class="cem-shell-head-acct"></div>'
