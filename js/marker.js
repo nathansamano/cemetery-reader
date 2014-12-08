@@ -35,9 +35,9 @@ $('.cem-shell-marker-content').alpaca({
             "condition": {
                 "required": true,
 		"enum": [
+		"Good",
 		"Renovated",
 		"Excellent",
-		"Good",
 		"Fair",
 		"Poor",
 		"Very Poor"
