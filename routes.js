@@ -21,7 +21,7 @@ var
     mongodb.Connection.DEFAULT_PORT
   ),
   dbHandle    = new mongodb.Db(
-    'cemcollection', mongoServer, { safe : true }
+    'cemdb', mongoServer, { safe : true }
   ),
 
   makeMongoId = mongodb.ObjectID;
