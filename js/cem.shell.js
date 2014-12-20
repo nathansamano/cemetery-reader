@@ -95,6 +95,7 @@ cem.shell = (function () {
   // swapDivs: convenience function when switching screens 
   swapDivs = function($newDiv) {
           if ( $activeDiv == $newDiv ) return;
+	  window.location.hash="":
           $divToHide = $activeDiv;
           $activeDiv = $newDiv;
           if (typeof($divToHide) != 'undefined') $divToHide.hide();
@@ -176,7 +177,6 @@ cem.shell = (function () {
           break;
 
 	case 'pwi':
-	  window.location.hash="";
 	  swapDivs(jqueryMap.$pwi);
           if ( ! pwiValid ) {
             pwiValid = true;
