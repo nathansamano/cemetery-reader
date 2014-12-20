@@ -24,7 +24,6 @@ cem.shell = (function () {
 	  // Display main menu; this needs to be done with code
           + '<div class="cem-shell-main-nav">'
 	  + '<h3>Temporary Menu:</h3>'
-	  + '<a href="#/test">Test Director Router</a><br>'
 	  + '<a href="#/geopoint">Geolocation Point Data</a>'
 	  + '<div class="cem-shell-list-menu"'
           +  ' data-id="cemetery">'
@@ -62,7 +61,7 @@ cem.shell = (function () {
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
     markerValid,      pwiValid,	      routes,
-    test, 	      router, 	      geopoint,
+    router, 	      geopoint,
     swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -103,9 +102,8 @@ cem.shell = (function () {
           return;
           }
   // route stuff
-  test = function () {console.log('We are OK!'); };
   geopoint = function() {
-	  console.log('In geopoint');
+	  // console.log('In geopoint');
           swapDivs(jqueryMap.$geo);
           if ( geoValid == false || pwiValid == true ) {
             geoValid = true;
@@ -116,7 +114,6 @@ cem.shell = (function () {
 
 
   routes = {
-	'test': test,
 	'geopoint': geopoint };
 
 
