@@ -24,6 +24,7 @@ cem.shell = (function () {
 	  // Display main menu; this needs to be done with code
           + '<div class="cem-shell-main-nav">'
 	  + '<h3>Temporary Menu:</h3>'
+	  + '<a href="#/test">Test Director Router</a>'
 	  + '<div class="cem-shell-list-menu"'
           +  ' data-id="cemetery">'
           +  'Cemetery Data Input</div>'
@@ -62,7 +63,8 @@ cem.shell = (function () {
     onTapAcct,        onLogin,        onLogout,
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
-    markerValid,      pwiValid,	      swapDivs;
+    markerValid,      pwiValid,	      routes,
+    test, 	      router, 	      swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -101,6 +103,11 @@ cem.shell = (function () {
           $newDiv.show();
           return;
           }
+  // route stuff
+  test = function () {console.log('We are OK!'); };
+
+  routes = {
+	'test': test };
 
 
   //--------------------- END DOM METHODS ----------------------
@@ -219,6 +226,10 @@ cem.shell = (function () {
     jqueryMap.$marker.hide();
     jqueryMap.$pwi.hide();
     cemValid = geoValid = markerValid = pwiValid = false;
+
+    // Can we do the routing this easily?
+    router = Router(routes);
+    router.init();
     // $.gevent.subscribe( $container, 'spa-login',  onLogin  );
     // $.gevent.subscribe( $container, 'spa-logout', onLogout );
 
