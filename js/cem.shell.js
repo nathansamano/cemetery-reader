@@ -94,8 +94,14 @@ cem.shell = (function () {
 
   // swapDivs: convenience function when switching screens 
   swapDivs = function($newDiv) {
-          if ( $activeDiv == $newDiv ) return;
-          $divToHide = $activeDiv;
+	  // Old is same as new
+          if ( $activeDiv == $newDiv ) {
+	    $newDiv.show();
+            return
+	    };
+
+	  // Swap new one in 
+	  $divToHide = $activeDiv;
           $activeDiv = $newDiv;
           if (typeof($divToHide) != 'undefined') $divToHide.hide();
           $newDiv.show();
@@ -192,7 +198,6 @@ cem.shell = (function () {
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
-	  document.location.hash="";
 	  // Set everything back to starting state . . 
 	  cemValid = geoValid = markerValid = pwiValid = false;
 	  jqueryMap.$footer.empty();
@@ -201,9 +206,11 @@ cem.shell = (function () {
 	  jqueryMap.$pwi.empty();
 	  jqueryMap.$marker.empty();
 	  $activeDiv.hide();
+	  // if (typeof($activeDiv) != 'undefined') delete self.$activeDiv;
 	  // Unset any lingering coordinates, too
 	  if ( typeof(returnDataMap) == 'object') 
 	    delete pwi.returnDataMap['coordinates'];
+	  document.location.hash="";
 	  break;
 	}
     return false;
