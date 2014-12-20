@@ -108,8 +108,7 @@ cem.shell = (function () {
              jqueryMap.$geo.empty();
              jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
  	     }
-            }
-	}	
+         } 
 
   cemetery = function() {
           // console.log('In cemetery');
