@@ -23,23 +23,13 @@ cem.shell = (function () {
         + '<div class="cem-shell-main">'
 	  // Display main menu; this needs to be done with code
           + '<div class="cem-shell-main-nav">'
-	  + '<h3>Temporary Menu:</h3>'
-	  + '<a href="#/geopoint">Geolocation Point Data</a>'
-	  + '<div class="cem-shell-list-menu"'
-          +  ' data-id="cemetery">'
-          +  'Cemetery Data Input</div>'
-	  +  '<div class="cem-shell-list-menu"'
-	  +  ' data-id="marker">'
-	  +  'Marker Details</div>'
-	  + '<div class="cem-shell-list-menu"'
-          +  ' data-id="pwi">'
-	  +  ' PWI Plugin</div>'
-	  +  '<div class="cem-shell-list-menu"'
-	  +  ' data-id="pwi-get">'
-	  +  'Show PWI Data</div>'
-          + '<div class="cem-shell-list-menu"'
-          +  ' data-id="clear">'
-          +  'Clear All</div></div>'
+	  + '<h4>Temporary Menu:</h4>'
+	  + '<a href="#/geopoint">Geolocation Point Data</a><br>'
+	  + '<a href="#/cemetery">Cemetery Data Input</a><br>'
+          + '<a href="#/marker">Marker Data</a><br>'
+          + '<a href="#/pwiPlugin">PWI Plugin</a><br>'
+          + '<a href="#/clear">Clear Data</a><br>'
+          + '</div>'
           + '<div class="cem-shell-cem-content"></div>'
 	  + '<div class="cem-shell-geo-content"></div>'
 	  + '<div class="cem-shell-marker-content"></div>'
@@ -61,7 +51,8 @@ cem.shell = (function () {
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
     markerValid,      pwiValid,	      routes,
-    router, 	      geopoint,
+    router, 	      geopoint,	      cemetery,
+    marker,	      pwiPlugin,      clear,
     swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -109,7 +100,7 @@ cem.shell = (function () {
           }
   // route stuff
   geopoint = function() {
-	  console.log('In geopoint');
+	  // console.log('In geopoint');
           swapDivs(jqueryMap.$geo);
           if ( geoValid == false || pwiValid == true ) {
             geoValid = true;
@@ -118,9 +109,54 @@ cem.shell = (function () {
             }
 	}
 
+  cemetery = function() {
+          // console.log('In cemetery');
+          swapDivs(jqueryMap.$cem);
+          if (  cemValid  == false ) {
+            cemValid = true;
+            jqueryMap.$cem.append(cem_form());
+            }
+	}
+
+  marker = function() {
+          // console.log('In marker');
+          swapDivs(jqueryMap.$marker);
+          if (  markerValid  == false ) {
+            markerValid = true;
+            jqueryMap.$cem.append(marker_form());
+            }
+        }
+
+  pwiPlugin = function() {
+          swapDivs(jqueryMap.$pwi);
+          if ( ! pwiValid ) {
+            pwiValid = true;
+            jqueryMap.$geo.append(pwi_form());
+            }
+	 }
+
+  clear = function() {
+          cemValid = geoValid = markerValid = pwiValid = false;
+          jqueryMap.$footer.empty();
+          jqueryMap.$cem.empty();
+          jqueryMap.$geo.empty();
+          jqueryMap.$pwi.empty();
+          jqueryMap.$marker.empty();
+          $activeDiv.hide();
+          // if (typeof($activeDiv) != 'undefined') delete self.$activeDiv;
+          // Unset any lingering coordinates, too
+          if ( typeof(returnDataMap) == 'object')
+            delete pwi.returnDataMap['coordinates'];
+          document.location.hash="";
+	  }
+
 
   routes = {
-	'geopoint': geopoint };
+	'geopoint': geopoint,
+	'cemetery': cemetery,
+	'marker': marker,
+	'pwiPlugin': pwiPlugin,
+	'clear': clear };
 
 
   //--------------------- END DOM METHODS ----------------------
