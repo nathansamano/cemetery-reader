@@ -24,13 +24,11 @@ cem.shell = (function () {
 	  // Display main menu; this needs to be done with code
           + '<div class="cem-shell-main-nav">'
 	  + '<h3>Temporary Menu:</h3>'
-	  + '<a href="#/test">Test Director Router</a>'
+	  + '<a href="#/test">Test Director Router</a><br>'
+	  + '<a href="#/geopoint">Geolocation Point Data</a>'
 	  + '<div class="cem-shell-list-menu"'
           +  ' data-id="cemetery">'
           +  'Cemetery Data Input</div>'
-          + '<div class="cem-shell-list-menu"'
-          +  ' data-id="geopoint">'
-          +  'Geolocation Point Data</div>'
 	  +  '<div class="cem-shell-list-menu"'
 	  +  ' data-id="marker">'
 	  +  'Marker Details</div>'
@@ -64,7 +62,8 @@ cem.shell = (function () {
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
     markerValid,      pwiValid,	      routes,
-    test, 	      router, 	      swapDivs;
+    test, 	      router, 	      geopoint,
+    swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
   //------------------- BEGIN UTILITY METHODS ------------------
@@ -105,9 +104,20 @@ cem.shell = (function () {
           }
   // route stuff
   test = function () {console.log('We are OK!'); };
+  geopoint = function() {
+	  console.log('In geopoint');
+          swapDivs(jqueryMap.$geo);
+          if ( geoValid == false || pwiValid == true ) {
+            geoValid = true;
+            jqueryMap.$geo.empty();
+            jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
+            }
+	}
+
 
   routes = {
-	'test': test };
+	'test': test,
+	'geopoint': geopoint };
 
 
   //--------------------- END DOM METHODS ----------------------
@@ -169,6 +179,7 @@ cem.shell = (function () {
           break;
 
 	case 'pwi':
+	  window.location.hash="";
 	  swapDivs(jqueryMap.$pwi);
           if ( ! pwiValid ) {
             pwiValid = true;
