@@ -103,7 +103,7 @@ cem.shell = (function () {
           }
   // route stuff
   geopoint = function() {
-	  // console.log('In geopoint');
+	  console.log('In geopoint');
           swapDivs(jqueryMap.$geo);
           if ( geoValid == false || pwiValid == true ) {
             geoValid = true;
@@ -151,6 +151,7 @@ cem.shell = (function () {
     switch(menu_item) {
 
 	case 'cemetery':
+	  document.location.hash="";
 	  swapDivs(jqueryMap.$cem);
           if (  cemValid  == false ) {
             cemValid = true;
@@ -168,6 +169,7 @@ cem.shell = (function () {
 	  break;
 
 	case 'marker':
+	  document.location.hash="";
 	  swapDivs(jqueryMap.$marker);
           if ( ! markerValid ) {
             markerValid = true;
@@ -176,6 +178,7 @@ cem.shell = (function () {
           break;
 
 	case 'pwi':
+	  document.location.hash="";
 	  swapDivs(jqueryMap.$pwi);
           if ( ! pwiValid ) {
             pwiValid = true;
@@ -189,6 +192,7 @@ cem.shell = (function () {
 	  // console.log(JSON.stringify(pwi.returnDataMap));
 	  break;
 	case 'clear':
+	  document.location.hash="";
 	  // Set everything back to starting state . . 
 	  cemValid = geoValid = markerValid = pwiValid = false;
 	  jqueryMap.$footer.empty();
