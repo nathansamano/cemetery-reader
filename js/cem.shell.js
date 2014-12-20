@@ -102,12 +102,14 @@ cem.shell = (function () {
   geopoint = function() {
 	  // console.log('In geopoint');
           swapDivs(jqueryMap.$geo);
+	  // To-do: fix logic to hold onto geoform between div swaps
           if ( geoValid == false || pwiValid == true ) {
-            geoValid = true;
-            jqueryMap.$geo.empty();
-            jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
+             geoValid = true;
+             jqueryMap.$geo.empty();
+             jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
+ 	     }
             }
-	}
+	}	
 
   cemetery = function() {
           // console.log('In cemetery');
