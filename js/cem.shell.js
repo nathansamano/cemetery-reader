@@ -95,7 +95,7 @@ cem.shell = (function () {
   // swapDivs: convenience function when switching screens 
   swapDivs = function($newDiv) {
           if ( $activeDiv == $newDiv ) return;
-	  window.location.hash="":
+	  window.location.hash="";
           $divToHide = $activeDiv;
           $activeDiv = $newDiv;
           if (typeof($divToHide) != 'undefined') $divToHide.hide();
