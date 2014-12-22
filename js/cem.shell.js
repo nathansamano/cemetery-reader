@@ -52,8 +52,8 @@ cem.shell = (function () {
     setChatAnchor,    initModule,     $activeDiv,
     $divToHide,	      cemValid,	      geoValid,
     markerValid,      pwiValid,	      routes,
-    router, 	      
-    clear,
+    router, 	      geopoint,	      cemetery, 
+    clear,	      pwiPlugin,      marker,
     swapDivs;
   //----------------- END MODULE SCOPE VARIABLES ---------------
 
@@ -100,6 +100,43 @@ cem.shell = (function () {
           $newDiv.show();
           return;
           }
+  // route stuff
+  geopoint = function() {
+          // console.log('In geopoint');
+          swapDivs(jqueryMap.$geo);
+          // To-do: fix logic to hold onto geoform between div swaps
+          if ( geoValid == false || pwiValid == true ) {
+             geoValid = true;
+             jqueryMap.$geo.empty();
+             jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
+             }
+         } 
+
+  cemetery = function() {
+          // console.log('In cemetery');
+          swapDivs(jqueryMap.$cem);
+          if (  cemValid  == false ) {
+            cemValid = true;
+            jqueryMap.$cem.append(cem_form());
+            }
+        }
+
+  marker = function() {
+          // console.log('In marker');
+          swapDivs(jqueryMap.$marker);
+          if (  markerValid  == false ) {
+            markerValid = true;
+            jqueryMap.$cem.append(marker_form());
+            }
+        }
+
+  pwiPlugin = function() {
+          swapDivs(jqueryMap.$pwi);
+          if ( ! pwiValid ) {
+            pwiValid = true;
+            jqueryMap.$geo.append(pwi_form());
+            }
+         }
 
   clear = function() {
           cemValid = geoValid = markerValid = pwiValid = false;
@@ -116,6 +153,12 @@ cem.shell = (function () {
           document.location.hash="";
 	  }
 
+  routes = {
+        'geopoint': geopoint,
+        'cemetery': cemetery,
+        'marker': marker,
+        'pwiPlugin': pwiPlugin,
+        'clear': clear };
 
 
   //--------------------- END DOM METHODS ----------------------
@@ -239,6 +282,10 @@ cem.shell = (function () {
     jqueryMap.$geo.append(geo_form(pwi.returnDataMap,'Marker'));
     jqueryMap.$marker.append(marker_form());
     jqueryMap.$geo.append(pwi_form());
+
+    // Set up client-side routing
+    router = Router(routes);
+    router.init();
 
     // Try those tabs again
     jqueryMap.$main.tabs();
