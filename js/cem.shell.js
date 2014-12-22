@@ -26,10 +26,10 @@ cem.shell = (function () {
 	  + '<h4>Temporary Menu:</h4>'
           + '</div>'
           + '<div id="cem-shell-main-content"><ul>'
-	  + '<li><a href="#geopoint">Geopoint</a></li>'
-    	  + '<li><a href="#cemetery">Cemetery</a></li>'
-	  + '<li><a href="#marker">Marker</a></li>'
-	  + '<li><a href="#plugin">PWI Plugin</a></li></ul>'
+	  + '<li><a href="#geopoint" rel="#/geopoint">Geopoint</a></li>'
+    	  + '<li><a href="#cemetery" rel="#/cemetery">Cemetery</a></li>'
+	  + '<li><a href="#marker" rel="#/marker">Marker</a></li>'
+	  + '<li><a href="#plugin" rel="#/pwiPlugin">PWI Plugin</a></li></ul>'
           + '<div id="cemetery"></div>'
           + '<div id="geopoint"></div>'
           + '<div id="marker"></div>'
@@ -113,8 +113,8 @@ cem.shell = (function () {
          } 
 
   cemetery = function() {
-          // console.log('In cemetery');
-          swapDivs(jqueryMap.$cem);
+          console.log('In cemetery');
+          // swapDivs(jqueryMap.$cem);
           if (  cemValid  == false ) {
             cemValid = true;
             jqueryMap.$cem.append(cem_form());
