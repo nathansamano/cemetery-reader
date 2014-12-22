@@ -17,7 +17,7 @@ geo_form = function(form_data,etype) {
 if (typeof(etype) == 'undefined')
   entity_type = 'Other';
 
-$('.cem-shell-geo-content').alpaca({
+$('#geopoint').alpaca({
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load
     // "schemaSource": "./serialization-schema.json",

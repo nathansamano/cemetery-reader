@@ -1,5 +1,5 @@
 cem_form = function() {
-$('.cem-shell-cem-content').alpaca({
+$('#cemetery').alpaca({
 
     // These files will pre-load form with data BUT
     // here it is done with Alpaca's widget data pre-load

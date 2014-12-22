@@ -1,5 +1,5 @@
 marker_form = function() {
-$('.cem-shell-marker-content').alpaca({
+$('#marker').alpaca({
     "schema": {
         "type": "object",
         "required": false,
