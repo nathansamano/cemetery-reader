@@ -35,13 +35,13 @@ key_name,
 check_map,
 id;
 
-configRoutes = function ( app, server ) {
-  app.all( '/:obj_type/*?', function ( request, response, next ) {
+configRoutes = function ( router, server ) {
+  router.all( '/:obj_type/*?', function ( request, response, next ) {
     response.contentType( 'json' );
     next();
   });
 
-  app.post( '/:obj_type/create', function ( request, response ) {
+  router.post( '/:obj_type/create', function ( request, response ) {
 
     // Get next ID for appropriate collection from sequence
     var dbName = request.params.obj_type;
@@ -105,9 +105,9 @@ configRoutes = function ( app, server ) {
        } // outer function
     ); // collection operation
 
-  }); // app.post
+  }); // router.post
 
-  app.post( '/:obj_type/update/:id', function ( request, response ) {
+  router.post( '/:obj_type/update/:id', function ( request, response ) {
     var
       find_map = { _id: makeMongoId( request.params.id ) },
       obj_map  = request.body;
@@ -134,7 +134,7 @@ configRoutes = function ( app, server ) {
     );
   });
 
-  app.get( '/:obj_type/delete/:id', function ( request, response ) {
+  router.get( '/:obj_type/delete/:id', function ( request, response ) {
     var find_map = { _id: makeMongoId( request.params.id ) };
 
     dbHandle.collection(

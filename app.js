@@ -13,22 +13,23 @@
 // ------------ BEGIN MODULE SCOPE VARIABLES --------------
 'use strict';
 var
-  http    = require( 'http'         ),
-  express = require( 'express'      ),
-  routes = require('./routes.js'    ),
+  http    = require( 'http'                 ),
+  express = require( 'express'              ),
+  bodyParser = require('body-parser'        ),
+  methodOverride = require('method-override'),
   app     = express(),
+  router = express.Router(),
+  routes = require('./routes.js'),
   server  = http.createServer( app );
+
 // ------------- END MODULE SCOPE VARIABLES ---------------
 
 // ------------- BEGIN SERVER CONFIGURATION ---------------
-app.configure( function () {
-  app.use( express.bodyParser() );
-  app.use( express.methodOverride() );
   app.use( express.static( __dirname + '' ) );
-  app.use(app.router);
-});
-
-routes.configRoutes( app, server );
+  app.use( bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json());
+  app.use(methodOverride());
+  routes.configRoutes( router, server );
 
 // -------------- END SERVER CONFIGURATION ----------------
 
